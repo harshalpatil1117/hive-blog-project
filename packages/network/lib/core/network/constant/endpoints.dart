@@ -13,6 +13,5 @@ class Endpoints {
   static const String appVersionIOS = '1.2';
 
 
-  // static const String login = '${baseUrl}api/CustomerUserDirectLogin';
 
 }

@@ -2,7 +2,6 @@ import 'package:common/common.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:network/hive_blog/data/model/model.dart';
 import 'package:network/network.dart';
 
 import '../../utils/app_strings.dart';
@@ -28,7 +27,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   ];
   final regexBodyText = RegExp(r'!\[.*?\]\(.*?\)|https?:\/\/\S+|\*|\<.*?>');
 
-  HiveBlogResponse hiveBlogResponse = HiveBlogResponse();
+  HiveBlogResponse hiveBlogResponse = const HiveBlogResponse();
   List<HiveBlogData> hiveBlogData = [];
 
   Future<void> getHiveBlogDataCall() async {
@@ -134,14 +133,16 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                   print(selectedType);
                   await getHiveBlogDataCall();
                 },
-                validator: (String) {},
+                validator: (value) {
+                  return null;
+                },
                 value: selectedType,
                 options: type,
               ),
               hiveBlogData.isNotEmpty
                   ? ListView.builder(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: hiveBlogData.length,
                       itemBuilder: (context, index) {
                         return Card(
@@ -164,7 +165,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                                           .hiveColorsExtensions.onBackground,
                                       radius: 15,
                                     ),
-                                    Space(Dimensions.smallest),
+                                    const Space(Dimensions.smallest),
                                     Text(
                                       '${hiveBlogData[index].author}',
                                       style: theme.textTheme.titleMedium,
@@ -186,7 +187,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                                     ),
                                   ],
                                 ),
-Space(Dimensions.smaller),
+const Space(Dimensions.smaller),
                                 Image.network((hiveBlogData[index]
                                                 .jsonMetadata!
                                                 .image ==
@@ -200,12 +201,12 @@ Space(Dimensions.smaller),
                                         .jsonMetadata!
                                         .image!
                                         .first),
-                                Space(Dimensions.smaller),
+                                const Space(Dimensions.smaller),
                                 Text(
                                   hiveBlogData[index].title.toString(),
                                   style: theme.textTheme.titleLarge,
                                 ),
-                                Space(Dimensions.smaller),
+                                const Space(Dimensions.smaller),
                                 Text(
                                   hiveBlogData[index]
                                       .body!
@@ -214,23 +215,23 @@ Space(Dimensions.smaller),
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                 ),
-                                Space(Dimensions.smaller),
+                                const Space(Dimensions.smaller),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Row(
                                       children: [
-                                         Icon(
+                                         const Icon(
                                             CupertinoIcons
                                                 .chevron_up_circle_fill,
                                             color: Colors.red,
                                           ),
-Space(Dimensions.smallest),
-                                         Icon(
+const Space(Dimensions.smallest),
+                                         const Icon(
                                             CupertinoIcons.chevron_down_circle,
                                           ),
-Space(Dimensions.smaller),
+const Space(Dimensions.smaller),
 
                                         Tooltip(
                                           message : 'Pending payout amount: \$${hiveBlogData[index].payout?.toStringAsFixed(2)} \n'
@@ -247,7 +248,7 @@ Space(Dimensions.smaller),
                                         ),
                                       ],
                                     ),
-                                    Space(Dimensions.medium),
+                                    const Space(Dimensions.medium),
                                     Row(
                                       children: [
                                     Icon(CupertinoIcons.chevron_up,color: theme.hiveColorsExtensions.onBackground.withOpacity(0.4),),
@@ -257,7 +258,7 @@ Space(Dimensions.smaller),
                                         ),
                                       ],
                                     ),
-                                    Space(Dimensions.medium),
+                                    const Space(Dimensions.medium),
                                     Row(
                                       children: [
                                         Icon(CupertinoIcons.chat_bubble_2,color: theme.hiveColorsExtensions.onBackground.withOpacity(0.5),),
@@ -275,7 +276,7 @@ Space(Dimensions.smaller),
                         );
                       },
                     )
-                  : SizedBox.shrink(),
+                  : const SizedBox.shrink(),
             ],
           ),
         ),

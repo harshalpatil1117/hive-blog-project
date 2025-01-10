@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_app/screens/dashboard/dashboard_screen.dart';
 import 'package:hive_assets/gen/assets.gen.dart';
-import 'package:network/network.dart';
 
-import '../../utils/utils.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -16,8 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final SharedPreferenceHelper _sharedPreferenceHelper =
-  SharedPreferenceHelper(Preference());
 
   @override
   void initState() {

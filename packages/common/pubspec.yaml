@@ -24,14 +24,4 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  fonts:
-    - family: Jost
-      fonts:
-        - asset: lib/src/assets/fonts/Jost-Bold.ttf
-          weight: 700
-        - asset: lib/src/assets/fonts/Jost-Light.ttf
-          weight: 300
-        - asset: lib/src/assets/fonts/Jost-Medium.ttf
-          weight: 500
-        - asset: lib/src/assets/fonts/Jost-Regular.ttf
-          weight: 400
+

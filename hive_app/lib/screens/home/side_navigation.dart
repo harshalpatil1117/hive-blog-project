@@ -1,12 +1,8 @@
-import 'dart:convert';
 
 import 'package:common/common.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:network/core/core.dart';
 import 'package:network/network.dart';
 
 import '../../utils/app_strings.dart';
@@ -23,8 +19,6 @@ class SideNavigation extends ConsumerStatefulWidget {
 }
 
 class _SideNavigationState extends ConsumerState<SideNavigation> {
-  final SharedPreferenceHelper _sharedPreferenceHelper =
-      SharedPreferenceHelper(Preference());
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +93,7 @@ class _SideNavigationState extends ConsumerState<SideNavigation> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              FontAwesomeIcons.signIn,
+                              FontAwesomeIcons.arrowRightToBracket,
                               size: 20,
                               color:
                               theme.hiveColorsExtensions.onBackground,
@@ -145,46 +139,44 @@ class ExpansionChildItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final padding = EdgeInsetsOf(context);
-    return Container(
-      child: Padding(
+    return Padding(
+      padding: padding.symmetric(
+        vertical: Dimensions.smallest,
+        horizontal: Dimensions.medium,
+      ),
+      child: Container(
         padding: padding.symmetric(
           vertical: Dimensions.smallest,
-          horizontal: Dimensions.medium,
+          // horizontal: Dimensions.medium,
         ),
-        child: Container(
-          padding: padding.symmetric(
-            vertical: Dimensions.smallest,
-            // horizontal: Dimensions.medium,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          // Adjust the radius as needed
+          border: Border.all(
+            color: theme.hiveColorsExtensions.secondary,
+            // Set the color of the border
+            width: 2.0, // Set the width of the border
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            // Adjust the radius as needed
-            border: Border.all(
-              color: theme.hiveColorsExtensions.secondary,
-              // Set the color of the border
-              width: 2.0, // Set the width of the border
+        ),
+        child: InkWell(
+          onTap: onItemPressed,
+          child: Container(
+            padding: padding.symmetric(
+              horizontal: Dimensions.small,
             ),
-          ),
-          child: InkWell(
-            onTap: onItemPressed,
-            child: Container(
-              padding: padding.symmetric(
-                horizontal: Dimensions.small,
-              ),
-              child: Row(
-                children: [
-                  itemIcon,
-                  const Space(Dimensions.small),
-                  Expanded(
-                    child: Text(
-                      itemTitle,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontSize: 14,
-                      ),
+            child: Row(
+              children: [
+                itemIcon,
+                const Space(Dimensions.small),
+                Expanded(
+                  child: Text(
+                    itemTitle,
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontSize: 14,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -201,9 +193,7 @@ class DrawerIndividualItems extends StatefulWidget {
 }
 
 class _DrawerIndividualItemsState extends State<DrawerIndividualItems> {
-  final SharedPreferenceHelper _sharedPreferenceHelper =
-      SharedPreferenceHelper(Preference());
-  // MenuAccessData menuAccessData = MenuAccessData();
+
 
   @override
   Widget build(BuildContext context) {
